@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#If $HOME is not set to /sdcard then needs to change to /sdcard
+if [ ! "$HOME" = "/sdcard" ]; then HOME=/sdcard; fi
+#Check if adb server is authourised and restart if not
+if [ ! "$(adb devices | grep emulator- | sed 's/emulator-5554\t//')" = "device" ]; then adb kill-server; adb start-server; fi
